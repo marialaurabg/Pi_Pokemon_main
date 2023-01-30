@@ -1,0 +1,27 @@
+.paginated{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 10 5;
+    flex-direction: row;
+    
+}
+.number{
+    margin: 20px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.button{
+    cursor: pointer;
+    height: 1.5em;
+    width: 1.7em;
+    border: none;
+    border-radius: 1em;
+    background: #f22828;
+    font-size: 19px;
+    color: white;
+    font-family: inherit;
+    font-weight: 500;
+
+}

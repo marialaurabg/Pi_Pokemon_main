@@ -1,0 +1,25 @@
+.card{
+    background-color: rgb(255, 255, 255, 0.3);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #173ead;
+    border-radius: 1em;
+    width: 23em;
+    height: 350px;
+    padding: 0.2em;
+    color: black;
+}
+.link{
+    text-decoration: none;
+}
+
+.text{
+    margin: 0px 0px 20px 0px;
+}
+
+.image{
+    width: 200px;
+    height: 200px;
+    margin: 20px 0px 5px 0px
+}
+

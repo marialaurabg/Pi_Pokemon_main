@@ -1,0 +1,35 @@
+.gral{
+    min-height: 100vh;
+    margin: 0%;
+    background-image: url('https://wallpaperaccess.com/full/3952024.png');
+    height: auto;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
+.link{
+    text-decoration: none;
+   }
+
+.button{
+    margin-top: 20px;
+    line-height: 40px;
+    font-weight: bold;
+    font-size: large;
+    color:  #003060;
+    padding: 0 20px;
+    background: rgb(240, 239, 239);
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+}
+
+.button:hover{
+    background: #003060;
+    color: white;
+    position: relative;
+    top: 5px;
+    box-shadow: none;
+}
+

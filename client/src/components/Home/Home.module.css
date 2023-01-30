@@ -1,0 +1,83 @@
+.gral{
+    min-height: 100vh;
+    margin: 0%;
+    background-image: url('https://wallpaperaccess.com/full/3952024.png');
+    height: auto;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
+.card_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 5px;
+    /* scale: 0.95; No hace falta, pero reduce las cards*/
+
+}
+.cards{
+    margin: 10px;
+}
+
+.div{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 10px;
+    /* justify-content: space-evenly; */
+    align-items: flex-start;
+}
+
+.button{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 40px;
+    /* font-family: inherit; */
+    font-weight: bold;
+    font-size: large;
+    color : white;
+    padding: 0 20px;
+    background: #173ead;
+    border: 2px solid #173ead;
+    border-radius: 40px;
+}
+
+.button_secu{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 20px;
+    font-weight: bold;
+    font-size: 15px;
+    color : white;
+    padding: 0 10px;
+    background: #173ead;
+    border: 2px solid #173ead;
+    border-radius: 40px;
+}
+
+.text{
+    text-decoration: none;
+}
+
+.paginated{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.label{
+    color: rgb(20, 20, 20);
+    font-family: inherit;
+    font-weight: bold;
+    margin: 7px 0px 0px 15px;
+    font-size: 15px;
+    font-weight: 500;
+
+}

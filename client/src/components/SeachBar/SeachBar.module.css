@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+}
+
+.input{
+    border-radius: 15px 0px 0px 15px;
+    text-decoration: none;
+    font-size: medium;
+    border: none;
+    height: 35px;
+    width: 200px;
+}
+
+.item{
+    align-self: center;
+    display: inline;
+    flex-direction: row;
+  }
+
+.button{
+    margin-top: 0%;
+    text-decoration: none;
+    cursor: pointer;
+    background:#173ead;
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 15px;
+    font-weight: 500;
+
+    /* border-radius: 0 0.9em 0.9em 0; ---> ES LO MISMO QUE HACER LO DE ABAJO*/
+    border-radius: 0px 15px 15px 0px;
+
+    border: none;
+    letter-spacing: 0.05em;
+    /* display: flex; */
+    align-items: center;
+    /* box-shadow: inset 0 0 1.6em -0.6 #F9B755; */
+    overflow: hidden;
+    position: relative;
+    height: 36px;
+    padding-right: 1.5em;
+    /* box-shadow: #F9B755; */
+
+}
