@@ -33,6 +33,7 @@
 }
 
 .button{
+    cursor: pointer;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -47,7 +48,17 @@
     border-radius: 40px;
 }
 
+.button:hover{
+    background: white;
+    color: #173ead;
+    position: relative;
+    top: 5px;
+    box-shadow: none;
+    border: 2px solid white;
+}
+
 .button_secu{
+    cursor: pointer;
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
@@ -59,6 +70,15 @@
     background: #173ead;
     border: 2px solid #173ead;
     border-radius: 40px;
+}
+
+.button_secu:hover{
+    background: white;
+    color: #173ead;
+    position: relative;
+    top: 5px;
+    box-shadow: none;
+    border: 2px solid white;
 }
 
 .text{

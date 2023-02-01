@@ -10,20 +10,22 @@ export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const GET_NAME_POKEMON = "GET_NAME_POKEMON";
 export const POST_POKEMON = "POST_POKEMON";
 export const GET_DETAIL = "GET_DETAIL";
-// export const GET_DETAIL_STATE = "GET_DETAIL_STATE"
 
 
 //-------------------------------- GET POKEMONS
 
 export function getPokemons(){
     return async function(dispatch){
-        var json = await axios.get('http://localhost:3001/pokemons')
-        return dispatch({
-            type: GET_POKEMONS,
-            payload: json.data
-            })
+        try{
+            var json = await axios.get('http://localhost:3001/pokemons')
+            return dispatch({
+                type: GET_POKEMONS,
+                payload: json.data
+                })
+            } catch (error){
+                console.log({error: error.message});
+            }
     } 
-
 };
 
 //-------------------------------- RESET POKEMONS
@@ -36,19 +38,19 @@ export function resetPokemons() {
 //-------------------------------- GET TYPES
 export function getTypes(){
     return async function (dispatch) {
-        // try {
+        try {
             const json = await axios.get('http://localhost:3001/types');
             return dispatch({
                 type: GET_TYPE,
                 payload: json.data
             });
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        } catch (error) {
+            console.log({error: error.message});
+        }
     }
 };
 
-//-------------------------------- FILTRO POR TIPO
+//-------------------------------- FILTRO TYPE
 export function filterType(payload){
     console.log(payload);
     return {
@@ -84,12 +86,15 @@ export function orderByAttack(payload){
 //-------------------------------- GET NAME
 export function getNamePokemon(namePoke){
     return async function(dispatch){
-        const json = await axios.get(`http://localhost:3001/pokemons?name=${namePoke}`);
-        console.log(json);
-        return dispatch({
-            type: GET_NAME_POKEMON,
-            payload: json.data
-        })
+        try{
+            const json = await axios.get(`http://localhost:3001/pokemons?name=${namePoke}`);
+            return dispatch({
+                type: GET_NAME_POKEMON,
+                payload: json.data
+            })
+        } catch(error){
+            console.log({error: error.message});
+        }
     }
 }
 
@@ -103,41 +108,32 @@ export function postPokemon(payload){
 
 //-------------------------------- GET DETAILS
 export function getDetail(id){
-    console.log('props: ' + id);
     return async function(dispatch){
          try {
             var res = await axios.get('http://localhost:3001/pokemons/' + id);
-            console.log('action detail: '+ res.data);
-
 
             return dispatch({
                 type: GET_DETAIL,
                 payload: res.data
             })
         } catch (error) {
-            console.log(`message error: ${error}`);
+            console.log({error: error.message});
         }
     }
 }
 
-//-------------------------------- GET DETAILS STATE
-// export function getDetailFromState(payload){
-//     return{
-//         type: GET_DETAIL_STATE,
-//         payload
-
+// //-------------------------------- DELETE
+//  export function deletePoke(id){
+//     return async function(dispatch){
+//         try{
+//             await axios.get('http://localhost:3001/delete/' + id);
+//             return dispatch({
+//                 type: GET_DETAIL,
+//             })
+//         } catch(error){
+//             console.log({error: error.message});
+//         }
 //     }
-// }
+//  }
 
-// -------------------------------- GET DETAILS PROMIS
-// export function getDetail(id){
-//     return function(dispatch){
-//         axios.get("http://localhost:3001/pokemons/" + id)
-//         .then(res => res.data)
-//         .then(res => dispatch({
-//             type: GET_DETAIL,
-//             payload: res
-//         }))
-//         .catch(error => console.log(error));
-//     }
-// }
+

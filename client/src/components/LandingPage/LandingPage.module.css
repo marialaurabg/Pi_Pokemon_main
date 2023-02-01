@@ -13,23 +13,36 @@
    }
 
 .button{
-    margin-top: 20px;
+    cursor: pointer;
+    margin-top: 50px;
     line-height: 40px;
     font-weight: bold;
     font-size: large;
-    color:  #003060;
+    color: white;
     padding: 0 20px;
-    background: rgb(240, 239, 239);
+    background: #f22828;
     border: none;
     border-radius: 40px;
-    box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+    /* box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6); */
 }
 
 .button:hover{
-    background: #003060;
-    color: white;
+    background: rgb(240, 239, 239);
+    color: #f22828;
     position: relative;
     top: 5px;
     box-shadow: none;
 }
 
+.text{
+    color: rgb(92, 91, 91);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 2px;
+
+}
+
+.div{
+    margin-top: 50px;
+}

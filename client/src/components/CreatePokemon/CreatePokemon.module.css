@@ -2,7 +2,7 @@
 .gral{
     min-height: 100vh;
     margin: 0%;
-    background-image: url('https://wallpaperaccess.com/full/3952024.png');
+    background-image: url('../../images/sky.jpg');
     height: auto;
     background-attachment: fixed;
     background-position: center center;
@@ -11,6 +11,7 @@
 }
 
 .button{
+    cursor: pointer;
     margin-top: 20px;
     line-height: 40px;
     font-weight: bold;
@@ -86,6 +87,7 @@
 }
 
 .button_create{
+    cursor: pointer;
     margin-top: 20px;
     line-height: 40px;
     font-weight: bold;
@@ -105,6 +107,17 @@
     top: 5px;
     box-shadow: none;
 }
+
+
+.button_create:disabled {
+    background-color: #f8f7f7;
+    color: #cfcfcf;
+    border: none;
+    margin-top: 5px;
+    cursor: default;
+}
+  
+
 .select{
     margin-top: 5px;
     padding-left: 15px;

@@ -5,7 +5,6 @@ import style from './Card.module.css';
 
 
 export default function Card({ image, name, types, id }){
-    console.log('Card: ' + id);
     return (
         <Link className={style.link} to={`/pokemons/${id}`}>
             <div className={style.card}>

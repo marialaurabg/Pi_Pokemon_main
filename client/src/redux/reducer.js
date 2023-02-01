@@ -1,4 +1,5 @@
 
+
 import { 
     GET_POKEMONS,
     RESET_POKEMONS,
@@ -11,7 +12,6 @@ import {
     POST_POKEMON,
     GET_DETAIL,
 } from './actions'
-// GET_DETAIL_STATE
 
 const initialState = {
     pokemons: [],
@@ -49,17 +49,15 @@ const rootReducer = (state = initialState, action) =>{
         case FILTER_TYPE:
             const allPokemons = state.allPokemons;
             console.log(allPokemons);
-            const filterPokes = action.payload === 'all' ? allPokemons : allPokemons.filter(e => e.types.includes(action.payload))//ARREGLAR ACÁ!!!! filterPokes es un array vacio
+            const filterPokes = action.payload === 'all' ? allPokemons : allPokemons.filter(e => e.types.includes(action.payload))
             console.log(filterPokes);
-            // if(filterPokes.length <= 0){
-            //     filterPokes = allPokemons;
-            //     alert('POKEMON TYPE NOY FOUND')
-            // };
+            
             return {
                 ...state,
                 pokemons: filterPokes,
 
             };
+
         //--------------------------------------------------------------------------
         case FILTER_CREATED:
             const allPokes = state.allPokemons;
@@ -83,7 +81,7 @@ const rootReducer = (state = initialState, action) =>{
 
             //--------------------------------------------------------------------------
             case ORDER_BY_NAME:
-            const allPokesName = [...state.pokemons];// esto es lo mismo que state.pokemos??? ----> INVESTIGAR!!!
+            const allPokesName = [...state.pokemons];
             const sortPokes = action.payload === 'asc' ? allPokesName.sort((a, b)=>{
                 if(a.name > b.name){
                     return 1;
@@ -153,20 +151,6 @@ const rootReducer = (state = initialState, action) =>{
                     ...state,
                     detail: action.payload
                 }
-
-            //--------------------------------------------------------------------------
-            // case GET_DETAIL_STATE:
-            //     const allPoke = state.allPokemons;
-            //     console.log(allPoke);
-            //     const detailPokes = allPoke.filter(
-            //         (e) => e.id.toString() === action.payload
-            //     );
-            //     // console.log(action.payload);//action.paylos es undefind ---- por que??
-            //     return {
-            //         ...state,
-            //         detail: detailPokes
-
-            //     }
 
 
         //agregar los otros casos ....

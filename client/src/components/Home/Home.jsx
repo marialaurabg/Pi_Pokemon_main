@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getPokemons, filterType, getTypes, filterByCreated, resetPokemons, orderByName, orderByAttack } from '../../redux/actions';
+import { getPokemons, filterType, getTypes, filterByCreated, resetPokemons, orderByName, orderByAttack, filterPrub } from '../../redux/actions';
 
 import Card from '../Card/Card';
 import Paginated from '../Paginated/Paginated';
@@ -94,7 +94,7 @@ function handleOrder(e){
         e.preventDefault();
         dispatch(orderByAttack(e.target.value));
     }
-    if(e.target.value === 'default'){
+    if(e.target.value === 'all'){
         e.preventDefault();
         dispatch(resetPokemons())
     }
@@ -120,7 +120,9 @@ function handleOrder(e){
                 <Link to = '/pokemon'>
                     <button className={style.button}>CREATE POKEMON</button>
                 </Link>
-                <button className={style.button} onClick={(e)=>{handleClick(e)}}>REFRESH</button>
+                <Link to= '/home'>
+                    <button className={style.button} onClick={(e)=>{handleClick(e)}}>REFRESH</button>
+                </Link>
             </div>
             
             <div className={style.div}>
@@ -128,6 +130,7 @@ function handleOrder(e){
             {/* //------------------------- ORDENAMIENTO ------------------------------// */}
                 <h1 className={style.label}>ORDER</h1>
                 <select className={style.button_secu} onChange={e => handleOrder(e)}>
+                    <option value='all'>ALL</option>
                     <option value='asc'>A-Z</option>
                     <option value='desc'>Z-A</option>
                     <option value='strong'>STRONG</option>
@@ -178,7 +181,7 @@ function handleOrder(e){
                         return (
                             <div className={style.cards}>
                                 <Link className={style.text}> {/* con esta línea cada card es un link al detalle */}
-                                    <Card image={e.image} name={e.name} types={e.types} key={e.id}/>
+                                    <Card image={e.image} name={e.name} types={e.types} id={e.id} key={e.id}/>
                                 </Link>
                             </div>
 
@@ -200,9 +203,6 @@ function handleOrder(e){
                 paginated={paginated}
                  />
             </div>
-
-        
-
             
         </div>
     )

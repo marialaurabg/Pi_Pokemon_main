@@ -22,10 +22,10 @@ function validate(input){
         errors.defense = "A number between 1 and 150 is required"
     }
     if(!input.speed || input.speed < 0 || input.speed >150){
-        errors.speed = "A number between 1 and 150 is required0"
+        errors.speed = "A number between 1 and 150 is required"
     }
     if(!input.types.length){
-        errors.types = "Must have at least one type"
+        errors.types = "Must have one or two types"
     }
 
     return errors;
@@ -33,10 +33,11 @@ function validate(input){
 
 
 export default function CreatePokemon(){
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
     const history = useHistory();
     const types = useSelector((state) => state.types);
+    
     //Estados locales
     const [errors, setErrors] = useState({})
     const [input, setInput] = useState({
@@ -102,7 +103,7 @@ export default function CreatePokemon(){
             image:"",
             types:[]
         })
-        //me lleva al pokemon creado en le home ---> redirige al usuario
+        //me lleva al pokemon creado en le home ---> redirige al usuario ----> SOLO ME LLEVA AL HOME 
         history.push('/home')
         //no necesito volver a depachar los pokemones porque ya lo hace el useEffect en el HOME
     }
@@ -178,8 +179,8 @@ export default function CreatePokemon(){
                             </div>
 
                             <div>
-                                <select className={style.select} onChange={(e)=> handleSelect(e)}>
-                                    <option className={style.options} value="title" name='types'> TYPES</option> 
+                                <select className={style.select} onChange={(e)=> handleSelect(e)} disabled={input.types.length >= 2} defaultValue="title">
+                                    <option className={style.options} value="title" disabled name='types'> TYPES</option> 
                                     {
                                         types.map( e =>{
                                             return(
@@ -203,7 +204,7 @@ export default function CreatePokemon(){
                                 )}
                             </div>
 
-                            <button className={style.button_create} type="submit">CREATE</button>
+                            <button className={style.button_create} type="submit" disabled={!input.name.length}>CREATE</button>
                         </div>
                         
                     </form>

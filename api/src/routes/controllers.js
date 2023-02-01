@@ -14,7 +14,7 @@ const getInfoApi = async () => {
           return {
             id: info.data.id,
             name: info.data.name,
-            hp: info.stats[0].base_stat,
+            hp: info.data.stats[0].base_stat,
             attack: info.data.stats[1].base_stat,
             defense: info.data.stats[2].base_stat,
             speed: info.data.stats[5].base_stat,
@@ -27,7 +27,7 @@ const getInfoApi = async () => {
       );
       return infoPokemons;
     } catch (error) {
-      console.log('este es el error de getInfoApi', error);
+      console.log({error: error.message})
     }
   };
 
@@ -35,7 +35,7 @@ const getInfoApi = async () => {
 //-------------------------------- TRAE DATOS DE LA DB
 const getPokeDb = async () => {
   const pokeDb = await Pokemon.findAll({
-    //trae los pokemones, que incluyan el nombre del type (tipo join)
+    //trae los pokemones, que incluyan el nombre del type 
     include: {
       model: Type,
       attributes: ['name'],  //me trae el name del type
@@ -47,7 +47,7 @@ const getPokeDb = async () => {
   const pokeMap = pokeDb?.map((pokemon) =>{
     const { types } = pokemon;
     const pokeData = {
-      ...pokemon.dataValues, // ESTO INVESTIGAR QUE HACE!!!! sin esto no funciona
+      ...pokemon.dataValues,
       types: types.map(e => e.name),
     };
 
@@ -62,12 +62,11 @@ const getAllPoke = async () => {
     try {
         const apiPokeData = await getInfoApi();
         const dbPokeData = await getPokeDb();
-        const allInfo = dbPokeData.concat(apiPokeData)
-        return allInfo;// HACER ESTO CON CONCAT
-        //return apiPokeData.concat(dbPokeData)
+        const allInfo = apiPokeData.concat(dbPokeData)
+        return allInfo;
 
     } catch (error) {
-        console.log('este es el error del getAllPoke', error);
+        console.log({error: error.message});
 
     }
 };
