@@ -11,19 +11,19 @@ const LandingPage = () =>{
 
             <div className={style.div}>
                 <div className={style.text}>
-                    Find here information about yours favorite Pokemones
+                    Find here information about yours favorite Pokemons
                     </div>
                 <div className={style.text}>
                     and create your own personalized Pokemon.
                 </div>
-                <div className={style.text}>
+                {/* <div className={style.text}>
                     Have fun!
-                </div>
+                </div> */}
             </div>
 
             <div>
                 <Link className={style.link} to='/home'>
-                    <button className={style.button}> Let's Go!</button>
+                    <button className={style.button}>Have fun!</button>
                 </Link>
             </div>
         </div>

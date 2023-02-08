@@ -12,7 +12,7 @@
 
 }
 
-.button{
+.buttonAct{
     cursor: pointer;
     height: 1.5em;
     width: 1.7em;
@@ -22,12 +22,40 @@
     font-size: 19px;
     color: white;
     font-family: inherit;
-    font-weight: 500;
+    font-weight: 700;
 
 }
 
-.button:hover{
+.buttonAct:hover{
     color: black;
     background: none;
 }
+
+.buttonDes{
+    cursor: pointer;
+    height: 1.5em;
+    width: 1.7em;
+    border: none;
+    border-radius: 1em;
+    background: white;
+    font-size: 19px;
+    color: black;
+    font-family: inherit;
+    font-weight: 700;
+
+}
+
+/* .buttonDes:hover{
+    cursor: pointer;
+    height: 1.5em;
+    width: 1.7em;
+    border: none;
+    border-radius: 1em;
+    background: #f22828;
+    font-size: 19px;
+    color: white;
+    font-family: inherit;
+    font-weight: 700;
+
+} */
 

@@ -1,16 +1,20 @@
-
+.homeButton{
+    position: fixed;
+	top: 40px;
+	right: 150px;
+}
 
 .button{
     cursor: pointer;
-    margin-top: 20px;
+    /* margin-top: 30px; */
     line-height: 40px;
     font-weight: bold;
     font-size: large;
     color: #f8f7f7;
-    padding: 0 15px;
+    padding: 0 20px;
     background: #f22828;
     border: none;
-    border-radius: 40px;
+    border-radius: 20px;
     /* box-shadow: 0 2px 20px 2px rgba(71, 71, 71, 0.6); */
 }
 
@@ -22,9 +26,30 @@
     box-shadow: none;
 }
 
+.divBtn{
+    padding: 5px;
+}
+
+.deleteBtn{
+    cursor: pointer;
+    line-height: 30px;
+    font-weight: bold;
+    font-size: large;
+    color: #f8f7f7;
+    padding: 0 20px;
+    background: #f22828;
+    border: none;
+    border-radius: 20px;
+}
+
 .img{
     padding: 10px;
     margin-block-end: -20px;
+}
+
+.image{
+    min-height: 230px;
+    max-width: 230px;
 }
 
 
@@ -32,7 +57,7 @@
 
 .gral{
     min-height: 100vh;
-    margin: 0%;
+    margin: -5px;
     height: auto;
     background: url('../../images/sky.jpg');
     background-attachment: fixed;
@@ -43,10 +68,11 @@
 .conteiner{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 .card{
+    margin-top: 30px;
     background-color: rgb(255, 255, 255, 0.3);
     border: solid 1px #f8f7f7;
     border-radius: 1em;
@@ -83,8 +109,8 @@
     padding-top: 8px;
     margin-block-end: 5px;
     font-family: inherit;
-    font-weight: 700;
-    font-size: 25px;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 .titleTypes{

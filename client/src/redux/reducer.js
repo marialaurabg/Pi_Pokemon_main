@@ -11,13 +11,19 @@ import {
     GET_NAME_POKEMON,
     POST_POKEMON,
     GET_DETAIL,
+    SET_ERROR,
+    CLEAR_DETAIL,
+    DELETE_POKEMON
 } from './actions'
+// ---------------------------
 
 const initialState = {
     pokemons: [],
     allPokemons: [],
     types: [],
-    detail: []
+    currentPage: 1,
+    detail: [],
+    error: false,
 }
 
 const rootReducer = (state = initialState, action) =>{
@@ -25,17 +31,25 @@ const rootReducer = (state = initialState, action) =>{
 
         //--------------------------------------------------------------------------
         case GET_POKEMONS:
-            return{
-                ...state,
-                pokemons: action.payload,
-                allPokemons: action.payload
-            };
+            // if(!action.payload.includes(null)){
+                return{
+                    ...state,
+                    pokemons: action.payload,
+                    allPokemons: action.payload
+                };
+            // }else{
+            //     return{
+            //         ...state,
+            //         error: true
+            //     };
+            // }
 
         //--------------------------------------------------------------------------
         case RESET_POKEMONS:
             return {
                 ...state,
-                pokemons: []
+                pokemons: [],
+                error: false
             };
 
         //--------------------------------------------------------------------------
@@ -44,39 +58,48 @@ const rootReducer = (state = initialState, action) =>{
                 ...state,
                 types: action.payload
             }
-        
+
         //--------------------------------------------------------------------------
         case FILTER_TYPE:
-            const allPokemons = state.allPokemons;
-            console.log(allPokemons);
-            const filterPokes = action.payload === 'all' ? allPokemons : allPokemons.filter(e => e.types.includes(action.payload))
-            console.log(filterPokes);
-            
-            return {
-                ...state,
-                pokemons: filterPokes,
+            const pokemons = state.pokemons;
+            const all = state.allPokemons;
+            const filterPokes = action.payload === 'all' ? all : pokemons.filter(e => e.types.includes(action.payload))
+            console.log('filtrado: ' + filterPokes);
+            if(!filterPokes.length){
+                return {
+                    ...state,
+                    error: true
+                }
+            }else{
+                return {
+                    ...state,
+                    pokemons: filterPokes,
+                    error: false
 
-            };
+                };
+            }
 
         //--------------------------------------------------------------------------
         case FILTER_CREATED:
             const allPokes = state.allPokemons;
             let filterCreated;
             if(action.payload === 'created'){
-                filterCreated = allPokes.filter(e => e.createdInDb);
+                filterCreated = allPokes.filter((e) => e.createdInDb);
                 console.log(filterCreated);
                 if(!filterCreated.length){
                     return{
-                        ...state
+                        ...state,
+                        error: true
                     };
                 }
             }
             if(action.payload === 'api'){
-                filterCreated = allPokes.filter(e => !e.createdInDb);
+                filterCreated = allPokes.filter((e) => !e.createdInDb);
             }
             return {
                 ...state,
-                pokemons: filterCreated
+                pokemons: filterCreated,
+                error: false
             }
 
             //--------------------------------------------------------------------------
@@ -102,7 +125,8 @@ const rootReducer = (state = initialState, action) =>{
             });
             return {
                 ...state,
-                pokemons: sortPokes
+                pokemons: sortPokes,
+                error: false
             }
 
             //--------------------------------------------------------------------------
@@ -129,13 +153,15 @@ const rootReducer = (state = initialState, action) =>{
                 console.log(sortPokesAtt);
                 return {
                     ...state,
-                    pokemons: sortPokesAtt
+                    pokemons: sortPokesAtt,
+                    error: false
                 }
 
             //--------------------------------------------------------------------------
             case GET_NAME_POKEMON: 
                 return {
                     ...state,
+                    pokemons: [],
                     pokemons: action.payload
                 }
 
@@ -146,12 +172,31 @@ const rootReducer = (state = initialState, action) =>{
                 }
 
             //--------------------------------------------------------------------------
+            case CLEAR_DETAIL:
+                return {
+                    ...state,
+                    detail: []
+                }
+
+            //--------------------------------------------------------------------------
             case GET_DETAIL:
                 return{
                     ...state,
                     detail: action.payload
                 }
+            
+            //--------------------------------------------------------------------------
+            case SET_ERROR:
+                return{
+                    ...state,
+                    error: action.payload
+                }
 
+            //--------------------------------------------------------------------------
+            case DELETE_POKEMON:
+                return{
+                    ...state,
+                }
 
         //agregar los otros casos ....
         // ver validaciones del PI de pokemon....

@@ -3,10 +3,11 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { getDetail } from '../../redux/actions';
+import { getDetail, clearDetail, deletePoke, getPokemons } from '../../redux/actions';
 import Loading from "../Loading/Loading";
 import style from "./Detail.module.css"
 
+import imgTipo from '../../images/noImage.png'
 
 export default function Detail(){
 
@@ -19,37 +20,41 @@ export default function Detail(){
     const history = useHistory()
 
     useEffect(() => {
-        dispatch(getDetail(id))//de esta forma accedo al id
+        dispatch(clearDetail())
+        dispatch(getDetail(id));//de esta forma accedo al id
     }, [dispatch]);
 
-    // function handlerDelete(){
-    //     dispatch(deletePoke(id));
-    //     alert('pokemon delete successfully');
-    //     history.push('/home')
-    //     dispatch(getPokemons())  
-    // }
+    function handleDelete(){
+        dispatch(deletePoke(id));
+        alert('pokemon delete successfully');
+        dispatch(getPokemons());
+        history.push('/home');
+    }
    
     return (
         <div className={style.gral}>
-            <div>
+
+            <div className={style.homeButton}>
                 <Link to='/home'>
-                    <button className={style.button}>x</button>
+                    <button className={style.button}>Return Home</button>
                 </Link>
             </div>
+        
                 {
                     detailPokemon.length ? 
-                
-                    <div className={style.conteiner}>  
+
+                    <div className={style.conteiner}> 
 
                         <div className={style.card}>
+
                             <div className={style.title}>
                                 {detailPokemon[0].name.toUpperCase()} 
                             </div>
                             <div className={style.titleID}>
-                                {detailPokemon[0].id} 
+                                {'ID# '+ detailPokemon[0].id} 
                             </div>
                             <div className={style.img}>
-                                <img src={detailPokemon[0].image} alt='pokemon'/>
+                                <img src={detailPokemon[0].image ? detailPokemon[0].image : imgTipo} alt='pokemon' className={style.image}/>
                             </div>
                             <ul className={style.titleTypes}>
                                 {detailPokemon[0].types.map((e) =>
@@ -77,23 +82,30 @@ export default function Detail(){
                                     <label className={style.titleCarac}>SPEED: </label>
                                     <label className={style.titleCarac2}>{detailPokemon[0].speed}</label>
                                 </div>
-                                 {detailPokemon[0].height > 0 ? 
-                                    <div>
-                                        <label className={style.titleCarac}>HEIGHT: </label>
-                                        <label className={style.titleCarac2}>{detailPokemon[0].height}cm</label>
-                                    </div>
-                                : <div> ? </div>}
-                                {detailPokemon[0].weight > 0 ? 
-                                    <div>
-                                        <label  className={style.titleCarac}>WEIGHT: </label>
-                                        <label className={style.titleCarac2}>{detailPokemon[0].weight / 10}kg</label>
-                                    </div>
-                                : <div> ? </div>}
+
+                                <div>
+                                    <label className={style.titleCarac}>HEIGHT: </label>
+                                    {detailPokemon[0].height > 0 ? 
+                                    <label className={style.titleCarac2}>{detailPokemon[0].height}cm</label>
+                                    : <label className={style.titleCarac2}> ? </label>}
+                                </div>
+
+                                <div>
+                                    <label  className={style.titleCarac}>WEIGHT: </label>
+                                    {detailPokemon[0].weight > 0 ? 
+                                    <label className={style.titleCarac2}>{detailPokemon[0].weight / 10}kg</label>
+                                    : <label className={style.titleCarac2}>?</label>}
+                                </div>
+
+                                                                    
                             </div>
-
-                            {/* <button onClick={(e)=> handlerDelete(e)}>DELETE POKEMON</button> */}
-
+                            {detailPokemon[0].createdInDb && ( 
+                            <div className={style.divBtn}>
+                                <button className={style.deleteBtn} onClick={(e)=> handleDelete(e)}>DELETE</button>
+                            </div>
+                            )}
                         </div>
+
                     </div>
                     : 
                     <Loading></Loading>

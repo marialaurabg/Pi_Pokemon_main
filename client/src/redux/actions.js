@@ -10,20 +10,28 @@ export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const GET_NAME_POKEMON = "GET_NAME_POKEMON";
 export const POST_POKEMON = "POST_POKEMON";
 export const GET_DETAIL = "GET_DETAIL";
+export const SET_ERROR = "SET_ERROR";
+export const CLEAR_DETAIL = "CLEAR_DETAIL";
+export const DELETE_POKEMON = "DELETE_POKEMON";
+
+
 
 
 //-------------------------------- GET POKEMONS
 
 export function getPokemons(){
-    return async function(dispatch){
+    return  async function(dispatch){
         try{
-            var json = await axios.get('http://localhost:3001/pokemons')
+            const json = await axios.get('http://localhost:3001/pokemons')
             return dispatch({
                 type: GET_POKEMONS,
                 payload: json.data
                 })
             } catch (error){
-                console.log({error: error.message});
+               return dispatch({
+                type: SET_ERROR,
+                payload: true
+               })
             }
     } 
 };
@@ -88,12 +96,16 @@ export function getNamePokemon(namePoke){
     return async function(dispatch){
         try{
             const json = await axios.get(`http://localhost:3001/pokemons?name=${namePoke}`);
+            console.log(json);
             return dispatch({
                 type: GET_NAME_POKEMON,
                 payload: json.data
             })
         } catch(error){
-            console.log({error: error.message});
+            return dispatch({
+                type: SET_ERROR,
+                payload: true
+            })
         }
     }
 }
@@ -122,18 +134,33 @@ export function getDetail(id){
     }
 }
 
-// //-------------------------------- DELETE
-//  export function deletePoke(id){
-//     return async function(dispatch){
-//         try{
-//             await axios.get('http://localhost:3001/delete/' + id);
-//             return dispatch({
-//                 type: GET_DETAIL,
-//             })
-//         } catch(error){
-//             console.log({error: error.message});
-//         }
-//     }
-//  }
+//-------------------------------- CLEAR DETAILS
+export function clearDetail(){
+    return{
+        type: CLEAR_DETAIL
+    }
+}
+
+//-------------------------------- SET ERROR
+export function setError(payload){
+    return {
+        type: SET_ERROR,
+        payload
+    }
+}
+
+//-------------------------------- DELETE
+ export function deletePoke(id){
+    return async function(dispatch){
+        try{
+            await axios.delete('http://localhost:3001/delete/' + id);
+            return dispatch({
+                type: DELETE_POKEMON,
+            })
+        } catch(error){
+            console.log({error: error.message});
+        }
+    }
+ }
 
 

@@ -19,7 +19,7 @@ router.get('/pokemons', async (req, res)=>{
         const allPokemon = await getAllPoke()
     
         if(name){
-            const pokeByName = await allPokemon.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
+            const pokeByName = await allPokemon.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
             if(pokeByName.length){
                 return res.status(200).send(pokeByName);
             } else {
@@ -66,10 +66,10 @@ router.post('/pokemons', async (req, res)=>{
 
     try {
 
-        if(!name) res.status(404).send({error:'Please enter a name!!'})
+        if(!name) return res.status(404).send({error:'Please enter a name!!'});
         if(name && types.length){
             const newPokemon = await Pokemon.create({
-                name, 
+                name: name.toLowerCase(), 
                 hp,
                 attack,
                 defense,
@@ -127,22 +127,21 @@ router.get("/pokemons/:id", async (req, res) => {
 
 //------------------------------------ DELETE
 
-// router.delete('/delete/:id', async (req, res)=>{
-//     const { id } = req.params;
-//     try{
-//         // let allPokemon = await getAllPoke();
-//         const pokeDelete = await Pokemon.findByPk(id);
-//         if(!pokeDelete){
-//             res.status(404).send('id not found')
-//         } else {
-//             // allPokemon.filter((e) => e.id.toString() !== id);
-//             pokeDelete.destroy();
-//             res.status(200).send('pokemon detele succeffully')
-//         }
-//     } catch(error){
-//         console.log({ error: error.message });
-//     }
-// })
+router.delete('/delete/:id', async (req, res)=>{
+    const { id } = req.params;
+    try{
+        const pokeDelete = await Pokemon.findByPk(id);
+        console.log(pokeDelete);
+        if(!pokeDelete){
+            res.status(404).send('Pokemon not found')
+        } else {
+            pokeDelete.destroy();
+            res.status(200).send('pokemon detele succeffully')
+        }
+    } catch(error){
+        console.log({ error: error.message });
+    }
+})
 
 
 module.exports = router;
